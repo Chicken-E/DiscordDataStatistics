@@ -6,3 +6,5 @@ Run with node on the root folder of your discord data. (You need to install csv-
 Makes 2 files, "messages.csv" and "attachements.txt".
 
 Doesn't send your data across the internet anywhere, source is commented and easy to understand.
+
+Also this is my first public source code on github so please be easy on me.
