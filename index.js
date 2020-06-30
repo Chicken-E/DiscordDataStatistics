@@ -18,10 +18,9 @@ let attachments_txt = "messageid,channelid,time,attachments\n"
 let highest_count = 0
 let highest_count_channel = ""
 
-//total message count
-let total = 0; 
-
+//array for promises
 let promises = [];
+
 //loop the channels
 Object.keys(data).forEach(id=>{
     promises.push(new Promise((resolve,reject)=>{
@@ -54,8 +53,6 @@ Object.keys(data).forEach(id=>{
             highest_count = rows.length;
             highest_count_channel = id;
         }
-        //increase total
-        total += rows.length;
         //resolve promise when done processing
         resolve();
         })
@@ -82,11 +79,11 @@ Promise.all(promises).then(v=>{
     console.log("")
     console.log("\x1b[0m\x1b[1m\x1b[4m\x1b[32mMESSAGE STATISTICS BY Chicken#4127\x1b[0m")
     console.log("")
-    console.log("\x1b[0m\x1b[1m\x1b[33mTotal messages: \x1b[0m\x1b[36m" + total)
+    console.log("\x1b[0m\x1b[1m\x1b[33mTotal messages: \x1b[0m\x1b[36m" +  messages_full.length)
     console.log("\x1b[0m\x1b[1m\x1b[33mCharacters typed: \x1b[0m\x1b[36m" + messages_full.map(m=>m.message).join("").length)
-    console.log("\x1b[0m\x1b[1m\x1b[33mAttachments sent: \x1b[0m\x1b[36m" + (attachments_txt.split("\n").length-1))
-    console.log("\x1b[0m\x1b[1m\x1b[33mCharacters per message: \x1b[0m\x1b[36m" + (messages_full.map(m=>m.message).join("").length / total).toFixed(1))
-    console.log("\x1b[0m\x1b[1m\x1b[33mMessages per channel: \x1b[0m\x1b[36m" + (total / Object.keys(data).length).toFixed(1))
+    console.log("\x1b[0m\x1b[1m\x1b[33mAttachments sent: \x1b[0m\x1b[36m" + attachments_full.length)
+    console.log("\x1b[0m\x1b[1m\x1b[33mCharacters per message: \x1b[0m\x1b[36m" + (messages_full.map(m=>m.message).join("").length / messages_full.length).toFixed(1))
+    console.log("\x1b[0m\x1b[1m\x1b[33mMessages per channel: \x1b[0m\x1b[36m" + (messages_full.length / Object.keys(data).length).toFixed(1))
     console.log("\x1b[0m\x1b[1m\x1b[33mTotal channels: \x1b[0m\x1b[36m" + Object.keys(data).length)
     console.log("\x1b[0m\x1b[1m\x1b[33mMost active channel: \x1b[0m\x1b[36m#" + data[highest_count_channel] + " (" + highest_count_channel + ")")
     console.log("\x1b[0m")
