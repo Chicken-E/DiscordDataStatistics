@@ -1,0 +1,15 @@
+{
+  "name": "DiscordDataStatistics",
+  "version": "1.0.0",
+  "description": "Message statistics from downloaded discord data package.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "antti@antti.codes",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^2.3.3"
+  }
+}
